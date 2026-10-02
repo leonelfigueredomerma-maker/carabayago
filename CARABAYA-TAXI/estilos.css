@@ -1,0 +1,964 @@
+/* =================================================
+   GENERAL
+================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background: #eeeeee;
+}
+
+
+.app {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    background: white;
+}
+
+
+/* =================================================
+   CABECERA
+================================================= */
+
+.cabecera {
+
+    position: relative;
+
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 18px 45px 18px 18px;
+}
+
+
+.cabecera h1 {
+
+    margin: 0;
+
+    font-size: 25px;
+}
+
+
+.cabecera p {
+
+    margin: 5px 0 0;
+
+    color: #ccc;
+
+    font-size: 14px;
+}
+
+
+/* =================================================
+   TRES PUNTOS
+================================================= */
+
+.btn-menu {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 30px;
+
+    line-height: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   MENÚ
+================================================= */
+
+.menu-principal {
+
+    display: none;
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 55px;
+
+    width: 230px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.3);
+}
+
+
+.menu-principal button {
+
+    width: 100%;
+
+    border: none;
+
+    background: white;
+
+    padding: 15px;
+
+    text-align: left;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.menu-principal button:hover {
+
+    background: #f1f1f1;
+}
+
+
+/* =================================================
+   MAPA
+================================================= */
+
+#mapa {
+
+    width: 100%;
+
+    height: 350px;
+}
+
+
+/* =================================================
+   CONTENIDO
+================================================= */
+
+.contenido {
+
+    padding: 18px;
+}
+
+
+.contenido h2 {
+
+    font-size: 20px;
+
+    margin-top: 0;
+}
+
+
+/* =================================================
+   DATOS CLIENTE
+================================================= */
+
+.seccion-cliente {
+
+    background: #f5f5f5;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+.seccion-cliente h3 {
+
+    margin-top: 0;
+
+    font-size: 17px;
+}
+
+
+/* =================================================
+   CAMPOS
+================================================= */
+
+.campo {
+
+    margin-bottom: 15px;
+}
+
+
+.campo label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+
+.campo input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.campo input:focus {
+
+    border-color: #1677ff;
+}
+
+
+.campo small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =================================================
+   GPS
+================================================= */
+
+#btnUbicacion {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #1677ff;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-bottom: 15px;
+}
+
+
+#btnUbicacion:disabled {
+
+    opacity: 0.7;
+}
+
+
+/* =================================================
+   INFORMACIÓN VIAJE
+================================================= */
+
+.informacion-viaje {
+
+    background: #f4f4f4;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-top: 10px;
+}
+
+
+.informacion-viaje div {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 9px 0;
+
+    border-bottom:
+        1px solid #ddd;
+}
+
+
+.informacion-viaje div:last-child {
+
+    border-bottom: none;
+}
+
+
+/* =================================================
+   PRECIO
+================================================= */
+
+.precio {
+
+    background: #fff3cd;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    margin: 15px 0;
+}
+
+
+#precio {
+
+    font-size: 32px;
+
+    font-weight: bold;
+
+    margin: 5px 0;
+}
+
+
+#tarifaInfo {
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+/* =================================================
+   BOTÓN TAXI
+================================================= */
+
+#btnTaxi {
+
+    width: 100%;
+
+    padding: 17px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+#btnTaxi:disabled {
+
+    background: #999;
+
+    cursor: not-allowed;
+}
+
+
+/* =================================================
+   MENSAJE
+================================================= */
+
+#mensaje {
+
+    text-align: center;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =================================================
+   MODALES
+================================================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    z-index: 99999;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    overflow-y: auto;
+}
+
+
+.modal-contenido {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,0.3);
+}
+
+
+.modal-contenido h2 {
+
+    text-align: center;
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+}
+
+
+.registro {
+
+    max-height: 95vh;
+
+    overflow-y: auto;
+}
+
+
+.registro h3 {
+
+    border-bottom:
+        1px solid #ddd;
+
+    padding-bottom: 7px;
+}
+
+
+.texto-registro {
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.cerrar-modal {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 10px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   REGISTRO CHOFER
+================================================= */
+
+.btn-registrar {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 5px;
+}
+
+
+#mensajeRegistro {
+
+    text-align: center;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+
+    margin-top: 15px;
+}
+
+
+/* =================================================
+   RESUMEN
+================================================= */
+
+.resumen {
+
+    background: #f5f5f5;
+
+    border-radius: 12px;
+
+    padding: 15px;
+}
+
+
+.resumen p {
+
+    margin: 0;
+
+    padding: 10px 0;
+
+    border-bottom:
+        1px solid #ddd;
+
+    line-height: 1.5;
+}
+
+
+.resumen p:last-child {
+
+    border-bottom: none;
+}
+
+
+.precio-confirmacion {
+
+    text-align: center;
+}
+
+
+.precio-confirmacion span {
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+
+/* =================================================
+   BOTONES CONFIRMACIÓN
+================================================= */
+
+.botones-confirmacion {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.botones-confirmacion button {
+
+    flex: 1;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.btn-cancelar {
+
+    background: #ddd;
+}
+
+
+.btn-confirmar {
+
+    background: #111;
+
+    color: white;
+}
+
+
+/* =================================================
+   PANEL CHOFER
+================================================= */
+
+.panel-chofer {
+
+    display: none;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    background: #f3f3f3;
+}
+
+
+.chofer-cabecera {
+
+    background: #111;
+
+    color: white;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+
+.chofer-cabecera h2 {
+
+    margin: 0;
+
+    font-size: 23px;
+}
+
+
+.chofer-cabecera span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ccc;
+
+    font-size: 13px;
+}
+
+
+/* =================================================
+   DATOS CHOFER
+================================================= */
+
+.datos-chofer-panel {
+
+    background: white;
+
+    margin: 15px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.datos-chofer-panel strong {
+
+    display: block;
+
+    font-size: 18px;
+}
+
+
+.datos-chofer-panel small {
+
+    display: block;
+
+    color: #777;
+
+    margin-top: 5px;
+}
+
+
+/* =================================================
+   ESTADO
+================================================= */
+
+.estado-chofer {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: white;
+
+    margin: 15px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+}
+
+
+.circulo-verde {
+
+    width: 15px;
+
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #20b15a;
+}
+
+
+.estado-chofer strong {
+
+    display: block;
+}
+
+
+.estado-chofer small {
+
+    color: #777;
+
+    display: block;
+
+    margin-top: 3px;
+}
+
+
+/* =================================================
+   SOLICITUD
+================================================= */
+
+.solicitud-chofer {
+
+    margin: 15px;
+}
+
+
+.sin-solicitudes {
+
+    background: white;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+
+.icono-grande {
+
+    font-size: 50px;
+}
+
+
+.tarjeta-solicitud {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0,0,0,0.12);
+}
+
+
+.nueva-solicitud {
+
+    background: #111;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+
+.dato-solicitud {
+
+    padding: 10px 0;
+
+    border-bottom:
+        1px solid #ddd;
+
+    line-height: 1.5;
+}
+
+
+/* =================================================
+   PRECIO CHOFER
+================================================= */
+
+.precio-chofer {
+
+    background: #fff3cd;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    margin-top: 15px;
+}
+
+
+.precio-chofer strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    margin-top: 5px;
+}
+
+
+/* =================================================
+   BOTONES CHOFER
+================================================= */
+
+.btn-aceptar {
+
+    width: 100%;
+
+    padding: 16px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #20a957;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.btn-rechazar {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #ddd;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =================================================
+   CELULAR
+================================================= */
+
+@media (max-width: 500px) {
+
+    #mapa {
+
+        height: 330px;
+
+    }
+
+
+    .contenido {
+
+        padding: 15px;
+
+    }
+
+}

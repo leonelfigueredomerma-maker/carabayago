@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CARABAYA TAXI</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet"
+          href="estilos.css">
+          <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     APLICACIÓN CLIENTE
+================================================= -->
+
+<div class="app">
+
+
+    <!-- CABECERA -->
+
+    <header class="cabecera">
+
+        <div class="titulo">
+
+            <h1>🚕 CARABAYA TAXI</h1>
+
+            <p>
+                Servicio de taxi - Macusani, Carabaya
+            </p>
+
+        </div>
+
+
+        <!-- TRES PUNTOS -->
+
+        <button
+            class="btn-menu"
+            onclick="abrirMenu()">
+
+            ⋮
+
+        </button>
+
+
+        <!-- MENÚ -->
+
+        <div
+            id="menuPrincipal"
+            class="menu-principal">
+
+            <button
+                onclick="abrirRegistroChofer()">
+
+                🚕 Registrarse como chofer
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAPA -->
+
+    <div id="mapa"></div>
+
+
+    <!-- CLIENTE -->
+
+    <main class="contenido">
+
+
+        <h2>
+            Solicitar un taxi
+        </h2>
+
+
+        <!-- DATOS DEL CLIENTE -->
+
+        <div class="seccion-cliente">
+
+            <h3>
+                👤 Datos del pasajero
+            </h3>
+
+
+            <div class="campo">
+
+                <label>
+                    Nombre y apellido
+                </label>
+
+                <input
+                    type="text"
+                    id="nombreCliente"
+                    placeholder="Ejemplo: Leonhel Figueredo">
+
+            </div>
+
+        </div>
+
+
+        <!-- GPS -->
+
+        <button
+            id="btnUbicacion"
+            onclick="usarMiUbicacion()">
+
+            📍 USAR MI UBICACIÓN
+
+        </button>
+
+
+        <!-- ORIGEN -->
+
+        <div class="campo">
+
+            <label>
+                📍 Origen
+            </label>
+
+            <input
+                type="text"
+                id="origen"
+                placeholder="Escribe tu origen">
+
+            <small>
+                Puedes escribirlo o usar tu ubicación.
+            </small>
+
+        </div>
+
+
+        <!-- DESTINO -->
+
+        <div class="campo">
+
+            <label>
+                🏁 Destino
+            </label>
+
+            <input
+                type="text"
+                id="destino"
+                placeholder="Escribe tu destino">
+
+            <small>
+                También puedes tocar el mapa.
+            </small>
+
+        </div>
+
+
+        <!-- INFORMACIÓN -->
+
+        <div class="informacion-viaje">
+
+            <div>
+
+                <span>
+                    📏 Distancia
+                </span>
+
+                <strong id="distancia">
+                    -- km
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ⏱️ Tiempo
+                </span>
+
+                <strong id="tiempo">
+                    -- min
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRECIO -->
+
+        <div class="precio">
+
+            <small>
+                💰 Precio del viaje
+            </small>
+
+            <div id="precio">
+                S/ 0.00
+            </div>
+
+            <small id="tarifaInfo">
+                Tarifa: S/ 0.0046 por metro
+            </small>
+
+        </div>
+
+
+        <!-- SOLICITAR -->
+
+        <button
+            id="btnTaxi"
+            onclick="solicitarTaxi()"
+            disabled>
+
+            🚕 SOLICITAR TAXI
+
+        </button>
+
+
+        <div id="mensaje"></div>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- =================================================
+     MODAL REGISTRO CHOFER
+================================================= -->
+
+<div
+    id="modalRegistroChofer"
+    class="modal">
+
+    <div class="modal-contenido registro">
+
+
+        <button
+            class="cerrar-modal"
+            onclick="cerrarRegistroChofer()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            🚕 REGISTRO DE CHOFER
+        </h2>
+
+
+        <p class="texto-registro">
+
+            Completa tus datos.
+            Tu registro deberá ser aprobado
+            por el sistema antes de poder
+            recibir pasajeros.
+
+        </p>
+
+
+        <h3>
+            👤 Datos personales
+        </h3>
+
+
+        <div class="campo">
+
+            <label>
+                Nombres
+            </label>
+
+            <input
+                type="text"
+                id="choferNombres"
+                placeholder="Nombres">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Apellidos
+            </label>
+
+            <input
+                type="text"
+                id="choferApellidos"
+                placeholder="Apellidos">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                DNI
+            </label>
+
+            <input
+                type="text"
+                id="choferDni"
+                maxlength="8"
+                placeholder="Número de DNI">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Número de celular
+            </label>
+
+            <input
+                type="tel"
+                id="choferTelefono"
+                placeholder="Celular">
+
+        </div>
+
+
+        <h3>
+            🚗 Datos del vehículo
+        </h3>
+
+
+        <div class="campo">
+
+            <label>
+                Marca
+            </label>
+
+            <input
+                type="text"
+                id="vehiculoMarca"
+                placeholder="Ejemplo: Toyota">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Modelo
+            </label>
+
+            <input
+                type="text"
+                id="vehiculoModelo"
+                placeholder="Ejemplo: Yaris">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Año
+            </label>
+
+            <input
+                type="number"
+                id="vehiculoAnio"
+                placeholder="Año">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Placa
+            </label>
+
+            <input
+                type="text"
+                id="vehiculoPlaca"
+                placeholder="Placa del vehículo">
+
+        </div>
+
+
+        <div class="campo">
+
+            <label>
+                Color
+            </label>
+
+            <input
+                type="text"
+                id="vehiculoColor"
+                placeholder="Color del vehículo">
+
+        </div>
+
+
+        <button
+            class="btn-registrar"
+            onclick="registrarChofer()">
+
+            🚕 ENVIAR REGISTRO
+
+        </button>
+
+
+        <div
+            id="mensajeRegistro">
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     MODAL CONFIRMACIÓN
+================================================= -->
+
+<div
+    id="modalConfirmacion"
+    class="modal">
+
+    <div class="modal-contenido">
+
+
+        <h2>
+            🚕 CONFIRMAR VIAJE
+        </h2>
+
+
+        <div class="resumen">
+
+
+            <p>
+
+                👤 <b>Pasajero</b>
+
+                <br>
+
+                <span id="confirmarCliente"></span>
+
+            </p>
+
+
+            <p>
+
+                📍 <b>Origen</b>
+
+                <br>
+
+                <span id="confirmarOrigen"></span>
+
+            </p>
+
+
+            <p>
+
+                🏁 <b>Destino</b>
+
+                <br>
+
+                <span id="confirmarDestino"></span>
+
+            </p>
+
+
+            <p>
+
+                📏 <b>Distancia</b>
+
+                <br>
+
+                <span id="confirmarDistancia"></span>
+
+            </p>
+
+
+            <p>
+
+                ⏱️ <b>Tiempo estimado</b>
+
+                <br>
+
+                <span id="confirmarTiempo"></span>
+
+            </p>
+
+
+            <p class="precio-confirmacion">
+
+                💰 <b>Precio</b>
+
+                <br>
+
+                <span id="confirmarPrecio"></span>
+
+            </p>
+
+
+        </div>
+
+
+        <div class="botones-confirmacion">
+
+
+            <button
+                class="btn-cancelar"
+                onclick="cancelarConfirmacion()">
+
+                ❌ CANCELAR
+
+            </button>
+
+
+            <button
+                class="btn-confirmar"
+                onclick="confirmarSolicitud()">
+
+                ✅ CONFIRMAR
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     PANEL CHOFER
+================================================= -->
+
+<div
+    id="panelChofer"
+    class="panel-chofer">
+
+
+    <div class="chofer-cabecera">
+
+        <h2>
+            🚕 CARABAYA TAXI
+        </h2>
+
+        <span>
+            PANEL DEL CHOFER
+        </span>
+
+    </div>
+
+
+    <div class="datos-chofer-panel">
+
+        <strong id="nombreChoferPanel">
+            Chofer
+        </strong>
+
+        <small id="vehiculoChoferPanel">
+            Vehículo
+        </small>
+
+    </div>
+
+
+    <div class="estado-chofer">
+
+        <div class="circulo-verde"></div>
+
+        <div>
+
+            <strong>
+                CHOFER DISPONIBLE
+            </strong>
+
+            <small>
+                Esperando solicitudes
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="solicitudChofer"
+        class="solicitud-chofer">
+
+
+        <div class="sin-solicitudes">
+
+            <div class="icono-grande">
+                🚕
+            </div>
+
+            <h3>
+                No hay solicitudes
+            </h3>
+
+            <p>
+                Las nuevas solicitudes
+                aparecerán aquí.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- LEAFLET -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./service-worker.js")
+                .then(() => {
+                    console.log("CARABAYA TAXI: aplicación instalada correctamente");
+                })
+                .catch((error) => {
+                    console.error("Error del Service Worker:", error);
+                });
+        });
+    }
+</script>
+</body>
+
+</html>
